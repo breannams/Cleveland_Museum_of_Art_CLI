@@ -1,6 +1,10 @@
+require 'pry'
+require "rake"
+require 'awesome_print' 
+require 'colorize'
+require 'httparty'
+
 require "Cleveland_Museum_of_Art_CLI/version"
 
-module ClevelandMuseumOfArtCLI
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative './Cleveland_Museum_of_Art_CLI/api'
+require_relative './Cleveland_Museum_of_Art_CLI/artwork'

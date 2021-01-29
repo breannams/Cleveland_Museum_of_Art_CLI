@@ -4,9 +4,5 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 12.0"
-gem 'awesome_print' 
-gem 'colorize'
-gem 'httparty'
-gem 'require_all'
-
-gem "pry", group: :development 
+gem "pry"
+gem "httparty"
