@@ -1,0 +1,34 @@
+Needs welcome phrase for when user enters the app.
+
+"Hello, and welcome to Cleveland Museum of Arts!"
+"Are you looking for a specific artwork? Or are you looking for an exhibit? Please enter A for artwork, or E for exhibit"
+**gets.strip input from this ^^^
+
+ARTWORK:::
+"Please select from the following search options:"
+"Search for a work of art by artist:"
+"Search for a work of art by artwork title:"
+"Search for a work of art by art medium:"
+"For list of art mediums enter M."
+*prints list of art mediums*
+
+"Search for a work of art by year created:"
+"Search for works of art currently on view at CMA:"
+"Search for artwork by Departments:"
+"For list of art Departments enter D:"
+*prints list of art departments*
+
+
+**collects user input and returns search**
+
+EXHIBIT:::
+
+"Please select from the following search options:"
+"Search for an exhibit by title:"
+"Search for an exhibit by organizer:"
+"Search for an exhibit by date opened:"
+"Search for an exhibit by date closed:"
+
+API ENDPOINTS: https://openaccess-api.clevelandart.org/api/artworks/ <---artworks
+----> EXHIBITIONS: https://openaccess-api.clevelandart.org/api/exhibitions/
+
