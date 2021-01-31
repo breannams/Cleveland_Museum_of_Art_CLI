@@ -19,7 +19,29 @@ class Cli
             
         while input != "exit"
             input = gets.strip.downcase
+
+            if input == "name"
+                search_by_name
+            
+            elsif input == "title"
+                search_by_title
+            
+            elsif input == "type"
+                search_by_type
+            
+            elsif input == "m"
+                list_of_mediums
+        
+            elsif input == "department"
+                search_by_department
+
+            elsif input == "d"
+                list_of_departments
+            elsif input == "exit"
+                puts "Thank you, have a great day!"
+            end
         end
+        
     end
 end
 

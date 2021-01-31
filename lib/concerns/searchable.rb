@@ -1,0 +1,4 @@
+module Concerns::Searchable
+
+
+end

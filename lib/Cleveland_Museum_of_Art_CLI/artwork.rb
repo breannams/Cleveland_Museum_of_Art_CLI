@@ -1,8 +1,9 @@
  require "pry"
 class Artwork
+    extend Concerns::Searchable
     attr_accessor :creator_bio, :fun_fact
     attr_reader :title, :creators, :culture, :department, :type, :tombstone_description
- ##private methods for attr_readers
+    
     @@all = []
     
      def initialize(hash)
@@ -19,8 +20,6 @@ class Artwork
      def self.all
        @@all
      end
-
-    
 
       private
       def title=(title)
