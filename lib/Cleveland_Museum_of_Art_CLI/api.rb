@@ -1,7 +1,7 @@
 require "httparty"
 require_relative "./artwork"
 #  data = HTTParty.get("https://openaccess-api.clevelandart.org/api/artworks/")
-#  puts data["data"].first["title"]
+#  puts data["data"].first["creators"].first["description"]
 class Api  
 
     def get_artwork
@@ -10,9 +10,8 @@ class Api
             tombstone["data"].each do |art|
               artwork_hash = {
                 title: art["title"],
-                  # creators: art["creators"].first["description"],
+                # creators: art["creators"].first["description"],
                 # creator_bio: art["creators"].first["biography"], ##using these gives an error????? undefined method `[]' for nil:NilClass (NoMethodError)
-                culture: art["culture"],
                 department: art["department"],
                 type: art["type"],
                 fun_fact: art["fun_fact"],
@@ -20,9 +19,9 @@ class Api
               }
              Artwork.new(artwork_hash)
             end
-            # Artwork.all.each do |x|
-            #    puts  x.creators
-            #    end
+            Artwork.all.each do |x|
+               puts  x.tombstone_description
+               end
     end
 end
 
@@ -35,3 +34,5 @@ end
  # Artwork.all.each do |x|
             # puts  x.tombstone_description
             # end
+
+          # "stats": { "intelligence": data["powerblah"]["description"]}

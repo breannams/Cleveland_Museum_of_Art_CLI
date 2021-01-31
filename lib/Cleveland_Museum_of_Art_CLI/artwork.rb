@@ -1,8 +1,8 @@
  require "pry"
 class Artwork
-  # extend Concerns::Findable
+    
     attr_accessor :creator_bio, :fun_fact
-    attr_reader :title, :creators, :culture, :department, :type, :tombstone_description
+    attr_reader :title, :creators, :department, :type, :tombstone_description
 
     @@all = []
     
@@ -22,10 +22,13 @@ class Artwork
      end
 
      def self.find_by_title(title)
-      self.all.find {|t| t.title == title}
+      @@all.find {|t| t.title == title}
      end
   
-     
+     def self.find_by_medium(type)
+      @@all.find {|m| m.type == type}
+     end
+
       private
       def title=(title)
       @title = title
@@ -34,10 +37,6 @@ class Artwork
 
       def creators= (creators)
           @creators = creators
-      end
-
-      def culture= (culture)
-        @culture = culture
       end
 
       def department= (department)
