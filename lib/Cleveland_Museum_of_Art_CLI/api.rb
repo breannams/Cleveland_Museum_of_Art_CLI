@@ -20,9 +20,9 @@ class Api
               }
              Artwork.new(artwork_hash)
             end
-            Artwork.all.each do |x|
-               puts  x.creators
-               end
+            # Artwork.all.each do |x|
+            #    puts  x.creators
+            #    end
     end
 end
 

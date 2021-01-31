@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "httparty"
   spec.add_development_dependency "awesome_print"
   spec.add_development_dependency "colorize"
+  
 end

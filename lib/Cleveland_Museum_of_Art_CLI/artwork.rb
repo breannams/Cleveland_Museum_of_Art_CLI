@@ -1,9 +1,9 @@
  require "pry"
 class Artwork
-    extend Concerns::Searchable
+  # extend Concerns::Findable
     attr_accessor :creator_bio, :fun_fact
     attr_reader :title, :creators, :culture, :department, :type, :tombstone_description
-    
+
     @@all = []
     
      def initialize(hash)
@@ -21,6 +21,11 @@ class Artwork
        @@all
      end
 
+     def self.find_by_title(title)
+      self.all.find {|t| t.title == title}
+     end
+  
+     
       private
       def title=(title)
       @title = title
