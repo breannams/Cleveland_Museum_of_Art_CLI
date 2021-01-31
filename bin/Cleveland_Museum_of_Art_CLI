@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require_relative '../lib/Cleveland_Museum_of_Art_CLI'
+
+search = Cli.new
+search.run

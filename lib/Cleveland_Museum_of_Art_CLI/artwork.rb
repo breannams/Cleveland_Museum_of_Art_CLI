@@ -7,8 +7,8 @@ class Artwork
     
      def initialize(hash)
          hash.each do |k, v|
-        self.send("#{k}=", v)
-          end
+          self.send("#{k}=", v)
+        end
 
          @@all << self
      end
@@ -51,6 +51,6 @@ class Artwork
       end
 
  end
-binding.pry
+# binding.pry
  
  #can't use .send on attr_readers :(

@@ -9,15 +9,14 @@ require_relative "./artwork"
 class Api  
 
     def get_artwork
-           url = "https://openaccess-api.clevelandart.org/api/artworks/"
-           tombstone = HTTParty.get(url)
-          #  tombstone.each do |h,v|
-          #   ##get access to title,series, etc. in a hash
-          #  end
-         artworks_hash = {
+          url = "https://openaccess-api.clevelandart.org/api/artworks/"
+          tombstone = HTTParty.get(url)
+          # tombstone.each do |h,v|
+          #    ##get access to title,series, etc. in a hash
+          #   end
+          artworks_hash = {
             title: tombstone["data"].first["title"],
             series: tombstone["data"].first["series"],
-            creation_date: tombstone["data"].first["creation_date"],
             creators: tombstone["data"].first["creators"].first["description"],
             creator_bio: tombstone["data"].first["creators"].first["biography"],
             culture: tombstone["data"].first["culture"],
@@ -53,6 +52,3 @@ end
 ## digital_description
 ## wall_description
 ## type
-##maybe add in opening and closing dates for a search? maybe.
-
-##if using several different URLs make search_by_blah a class method. 
