@@ -1,7 +1,7 @@
  require "pry"
 class Artwork
     attr_accessor :creator_bio, :fun_fact
-    attr_reader :title, :series, :creation_date, :creators, :culture, :department, :type
+    attr_reader :title, :creators, :culture, :department, :type, :tombstone_description
  ##private methods for attr_readers
     @@all = []
     
@@ -9,8 +9,7 @@ class Artwork
          hash.each do |k, v|
           self.send("#{k}=", v)
         end
-
-         @@all << self
+        self.save
      end
  
      def save
@@ -21,18 +20,13 @@ class Artwork
        @@all
      end
 
+    
+
       private
       def title=(title)
       @title = title
       end
 
-      def series=(series)
-        @series = series
-      end
-
-      def creation_date= (creation_date)
-        @creation_date = creation_date
-      end
 
       def creators= (creators)
           @creators = creators
@@ -48,6 +42,10 @@ class Artwork
 
       def type= (type)
         @type = type
+      end
+      
+      def tombstone_description= (tombstone_description)
+        @tombstone_description = tombstone_description
       end
 
  end

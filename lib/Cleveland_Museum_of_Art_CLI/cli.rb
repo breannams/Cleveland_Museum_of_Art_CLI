@@ -12,12 +12,11 @@ class Cli
             puts "For list of art mediums enter 'm'"
         # *prints list of art mediums*
             
-            puts "To search for works of art currently on view at CMA, enter 'current'"
             puts "To search for artwork by Departments, enter 'department'"
             puts "For a list of art Departments enter 'd'"
         # *prints list of art departments*
             puts "Or type 'exit' to finish your search."
-            input = nil
+            
         while input != "exit"
             input = gets.strip.downcase
         end
