@@ -46,16 +46,37 @@ class Cli
         
     end
 
-    # def search_by_creator_name
-        #puts "Please enter the name of the artist:"
-    # end
+    def search_by_creator_name
+        puts "Please enter the name of the artist:"
+        input = gets.strip
+        if Artwork.find_by_creator(input)
+            Artwork.all.each_with_index{|c,i| puts "#{i + 1}. #{c.creators}. #{c.title}."}
+            puts "Would you like more information about the creator art artwork? Enter 'creator' for creator information, 'artwork' for information about a specific artwork, or 'menu' to return to the main menu."
+            input2 = gets.strip.downcase
+            if input2 == "creator"
+                Artwork.all.each{|creator| puts "#{creator.creator_bio}."}
+            elsif input2 == "artwork"
+                Artwork.all.each {|art| puts "#{art.tombstone_description}, Fun Fact! #{art.fun_fact}"}
+            elsif input2 == "menu"
+                run
+            end
+        else
+            puts "I'm not sure what you entered, please try again."
+            search_by_creator_name
+        end
+    end
 
     def search_by_title
         puts "Please enter the title of the artwork:"
         input = gets.strip
         
         if Artwork.find_by_title(input)
-          Artwork.all.sort {|a,b| a.title <=> b.title}.each_with_index {|t, i| puts "#{i + 1}. #{t.title}. Description: #{t.tombstone_description}, Fun fact! #{t.fun_fact}"}
+          Artwork.all.each_with_index {|t, i| puts "#{i + 1}. #{t.title}. Description: #{t.tombstone_description}, Fun fact! #{t.fun_fact}"}
+             puts "Would you like more information about the creator? y/n"
+             input2 = gets.strip.downcase
+             if input2 == "y"
+                Artwork.all.each {|c| puts "#{c.creator_bio}"}
+             end
         else
             puts "I'm not sure what you entered, please try again."
             search_by_title
@@ -65,15 +86,13 @@ class Cli
    
     def search_by_medium
      puts "Please enter the type of medium:"
-     input = gets.strip
+     input = gets.strip.capitalize
         if  Artwork.find_by_medium(input)
             Artwork.all.sort {|a,b| a.title <=> b.title}.each_with_index {|m, i| puts "#{i + 1}. #{m.title}"}
         puts "Would you like more information about a particular artwork? y/n"
             input2 = gets.strip.downcase
             if input2 == "y"
                 search_by_title
-            else
-                run
             end
         else   
             puts "I'm not sure what you entered, please try again."
@@ -82,17 +101,21 @@ class Cli
         end
     end
 
-    # def search_by_department
-    #puts "Please enter the department"
-    #input = gets.strip.downcase
-    #puts "I'm not sure what you entered, please try again."
-    #search_by_department
-    # end
+    def search_by_department
+        puts "Please enter the department department name:"
+        input = gets.strip
+        if Artwork.find_by_department(input)
+            Artwork.all.each_with_index {|d, i| puts "#{i + 1}. #{d.department}, #{d.title}."}
+        else
+        puts "I'm not sure what you entered, please try again."
+        search_by_department
+        end
+    end
 
     def list_of_departments
         dept = Artwork.all.sort{|a,b| a.department <=> b.department}.each {|d| puts "#{d.department}"}
         run
-     ##need to figure out how to only return uniq. otherwise it returns everyyy dept for eveeerrryy artwork in API.
+     ##need to figure out how to only return uniq. otherwise it returns everyyy dept for eveeerrryy artwork in API. by making a helper method
     end
 
     def list_of_mediums

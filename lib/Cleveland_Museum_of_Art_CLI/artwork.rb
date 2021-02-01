@@ -29,6 +29,14 @@ class Artwork
       @@all.find {|m| m.type == type}
      end
 
+     def self.find_by_creator(creators)
+      @@all.find {|a| a.creators = creators}
+     end
+
+     def self.find_by_department(department)
+      @@all.find {|d| d.department == department}
+     end
+
       private
       def title=(title)
       @title = title
