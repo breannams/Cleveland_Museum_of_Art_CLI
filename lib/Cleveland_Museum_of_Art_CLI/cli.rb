@@ -2,8 +2,9 @@
 class Cli
 
     ##TO DO!!: get the stupid creator method to search things >:(
-    ##TO DO!!: figure out how to incorporate colorize :)
-    ##Uhm. figure out how to use find_all for the search methods!
+    
+    ##To Do: Why will search by title not work on its own??
+    ##To do... figure out why this has broken my mediums and departments list :(
     def run
         puts "-----------------------------------------------"
         puts "Hello, and welcome to Cleveland Museum of Arts!"
@@ -52,12 +53,19 @@ class Cli
         input = gets.strip
         c = Artwork.find_by_creator(input)
         if c != nil
-            puts "#{c.creators} - #{c.title}"
-            extra_search
+            puts "Artwork title: #{c.title}."
+            puts "If you would like more information about a specific piece of artwork enter 'artwork', if you would like more information on the creator enter 'bio', or to return to the main menu enter 'menu'."
+            input2 = gets.strip.downcase
+            if input2 == "bio"
+                puts "Creator bio: #{c.creator_bio}"
+            elsif input2 == "artwork"
+                search_by_title
+            elsif input2 == "menu"
+                run
+            end
         else
-            puts "I'm not sure what you entered, please try again."
+            error
             search_by_creator_name
-            
         end
     end
 
@@ -66,16 +74,21 @@ class Cli
         input = gets.strip
         art = Artwork.find_by_title(input)
         if art != nil
-            puts "Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
-            puts "Please enter the name of another artwork, or enter 'menu' to return to the main menu."
+           # art.each do |test|
+           # puts "Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
+            puts "If you would like to search for another artwork by title enter 'yes', or enter 'menu' to return to the main menu."
                 input2 = gets.strip.downcase
                 if input2 == 'menu'
                     run
-                else
+                elsif input2 == 'yes'
                 search_by_title
-                end
+              #  end
+                elsif art == nil
+                    puts "I'm sorry, we do not have more detailed information about this artwork at this time."
+                    search_by_title
+            end
         else
-            puts "I'm not sure what you entered, please try again."
+            error
             search_by_title
         end
      end
@@ -86,11 +99,10 @@ class Cli
      input = gets.strip
         medium = Artwork.find_by_medium(input)
         if medium != nil
-            puts "#{medium.title}"
             extra_search
         else   
-            puts "I'm not sure what you entered, please try again."
-                search_by_medium
+            error
+            search_by_medium
         end
     end
 
@@ -99,10 +111,9 @@ class Cli
         input = gets.strip
         dept = Artwork.find_by_department(input)
         if dept != nil
-            puts "Artwork title: #{dept.title}."
             extra_search
         else
-        puts "I'm not sure what you entered, please try again."
+        error
         search_by_department
         end
     end
@@ -127,17 +138,8 @@ class Cli
             run
         end
     end
+
+    def error
+        puts "I'm not sure what you entered, please check your spelling and try again."
+    end
 end
-
-
-   # if Artwork.find_by_creator(input)
-        #     Artwork.all.each_with_index{|c,i| puts "#{i + 1}. #{c.creators}. #{c.title}."}
-        #     puts "Would you like more information about the creator art artwork? Enter 'creator' for creator information, 'artwork' for information about a specific artwork, or 'menu' to return to the main menu."
-        #     input2 = gets.strip.downcase
-        #     if input2 == "creator"
-        #         Artwork.all.each{|creator| puts "#{creator.creator_bio}."}
-        #     elsif input2 == "artwork"
-        #         Artwork.all.each {|art| puts "#{art.tombstone_description}, Fun Fact! #{art.fun_fact}"}
-        #     elsif input2 == "menu"
-        #         run
-        #     end

@@ -21,20 +21,21 @@ class Artwork
        @@all
      end
 
-     def self.find_by_title(title)
-      @@all.find {|t| t.title == title}
+     def self.find_by_title(input)
+       @@all.find_all{|t| t.title == input}.each{|t2| puts "Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"}
      end
   
-     def self.find_by_medium(type)
-      @@all.find {|m| m.type == type}
+     def self.find_by_medium(input)
+      @@all.find_all{|m| m.type == input}.each{|m2| puts "Artwork title: #{m2.title}"}
+      
      end
 
-     def self.find_by_creator(creators)
-      @@all.find {|c| c.creators == creators}
+     def self.find_by_creator(input)
+      @@all.find_all{|c| c.creators == input}.each{|c2| puts "Artwork title: #{c2.title}"}
      end
 
-     def self.find_by_department(department)
-      @@all.find {|d| d.department == department}
+     def self.find_by_department(input)
+      @@all.find_all{|d| d.department == input}.each{|d2| puts "Artwork title: #{d2.title}"}
      end
 
       private
