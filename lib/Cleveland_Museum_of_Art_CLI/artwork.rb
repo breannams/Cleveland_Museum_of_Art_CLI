@@ -30,7 +30,7 @@ class Artwork
      end
 
      def self.find_by_creator(creators)
-      @@all.find {|a| a.creators = creators}
+      @@all.find {|a| a.creators == creators}
      end
 
      def self.find_by_department(department)
@@ -39,7 +39,7 @@ class Artwork
 
       private
       def title=(title)
-      @title = title
+        @title = title
       end
 
 
@@ -60,6 +60,5 @@ class Artwork
       end
 
  end
-# binding.pry
+
  
- #can't use .send on attr_readers :(

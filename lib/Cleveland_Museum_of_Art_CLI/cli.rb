@@ -69,21 +69,16 @@ class Cli
     def search_by_title
         puts "Please enter the title of the artwork:"
         input = gets.strip
-        
-        if Artwork.find_by_title(input)
-          Artwork.all.each_with_index {|t, i| puts "#{i + 1}. #{t.title}. Description: #{t.tombstone_description}, Fun fact! #{t.fun_fact}"}
-             puts "Would you like more information about the creator? y/n"
-             input2 = gets.strip.downcase
-             if input2 == "y"
-                Artwork.all.each {|c| puts "#{c.creator_bio}"}
-             end
+        art = Artwork.find_by_title(input)
+        if art != nil
+            puts "#{art.title}. Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
         else
             puts "I'm not sure what you entered, please try again."
             search_by_title
         end
      end
 
-   
+ 
     def search_by_medium
      puts "Please enter the type of medium:"
      input = gets.strip.capitalize
@@ -113,13 +108,13 @@ class Cli
     end
 
     def list_of_departments
-        dept = Artwork.all.sort{|a,b| a.department <=> b.department}.each {|d| puts "#{d.department}"}
+        dept = Artwork.all.collect{|artwork| artwork.department}.uniq.sort.each {|d| puts "#{d}"}
         run
-     ##need to figure out how to only return uniq. otherwise it returns everyyy dept for eveeerrryy artwork in API. by making a helper method
+     
     end
 
     def list_of_mediums
-        medium = Artwork.all.sort{|a,b| a.type <=> b.type}.each {|m| puts "#{m.type}"}
+        medium = Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "#{m}"}
         run
     end
 end
