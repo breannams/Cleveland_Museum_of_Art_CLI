@@ -37,7 +37,7 @@ class Artwork
      end
 
      def self.find_by_creator(input)
-      @@all.select{|c| c.creators.include?(input)}.each{|c2| puts "Artwork title: #{c2.title}"}
+      @@all.select{|c| c.creators.include?(input)}.each{|c2| puts "Creator: #{c2.creators}. Artwork title: #{c2.title}."}
      end
 
      def self.find_by_department(input)
@@ -68,5 +68,3 @@ class Artwork
       end
 
  end
-
- # @@all.find_all{|t| t.title == input}.each{|t2| puts "Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"}
