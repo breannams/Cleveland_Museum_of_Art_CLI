@@ -29,11 +29,3 @@ end
 
  api = Api.new
  api.get_artwork
-
- 
- 
- # Artwork.all.each do |x|
-            # puts  x.tombstone_description
-            # end
-
-          # "stats": { "intelligence": data["powerblah"]["description"]}

@@ -30,7 +30,7 @@ class Artwork
      end
 
      def self.find_by_creator(creators)
-      @@all.find {|a| a.creators == creators}
+      @@all.find {|c| c.creators == creators}
      end
 
      def self.find_by_department(department)
@@ -38,6 +38,7 @@ class Artwork
      end
 
       private
+      
       def title=(title)
         @title = title
       end
