@@ -2,7 +2,7 @@
 class Artwork
     
     attr_accessor :creator_bio, :fun_fact
-    attr_reader :title, :creators, :department, :type, :tombstone_description
+    attr_reader :title, :creators, :department, :type, :description, :tombstone_description
 
     @@all = []
     
@@ -22,7 +22,13 @@ class Artwork
      end
 
      def self.find_by_title(input)
-       @@all.find_all{|t| t.title == input}.each{|t2| puts "Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"}
+       @@all.find_all{|t| t.title == input}.each do|t2|
+          if t2.tombstone_description || t2.fun_fact != nil
+          puts "Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
+          else
+            puts "I'm sorry, we do not have more detailed information about this piece of artwork at this time."
+          end
+       end
      end
   
      def self.find_by_medium(input)
@@ -31,7 +37,7 @@ class Artwork
      end
 
      def self.find_by_creator(input)
-      @@all.find_all{|c| c.creators == input}.each{|c2| puts "Artwork title: #{c2.title}"}
+      @@all.select{|c| c.creators.include?(input)}.each{|c2| puts "Artwork title: #{c2.title}"}
      end
 
      def self.find_by_department(input)
@@ -63,4 +69,4 @@ class Artwork
 
  end
 
- 
+ # @@all.find_all{|t| t.title == input}.each{|t2| puts "Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"}

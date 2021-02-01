@@ -1,27 +1,18 @@
 
 class Cli
 
-    ##TO DO!!: get the stupid creator method to search things >:(
-    
-    ##To Do: Why will search by title not work on its own??
-    ##To do... figure out why this has broken my mediums and departments list :(
+ 
+    ##To do... figure out why creator_bio isn't working.
+    ##To do. FIgure out why title is all of a suddent not outputting "Sorry we blah" when the artwork title doesn't have a tombstone or funfact
+    ##Searches wont raise errors when typing random jargon like "dkfjdljfd" into search field :(
     def run
-        puts "-----------------------------------------------"
-        puts "Hello, and welcome to Cleveland Museum of Arts!"
-        puts "-----------------------------------------------"
+       
         cleveland_museum_of_art_CLI = Api.new()
         input = nil
-            puts "Please select from the following search options:"
-            puts "To search for a work of art by creator name, enter 'name'"
-            puts "To search for a work of art by artwork title, enter 'title'"
-            puts "To search for a work of art by art medium, enter 'type'"
-            puts "For list of art mediums enter 'm'"
-            puts "To search for artwork by Departments, enter 'department'"
-            puts "For a list of art Departments enter 'd'"
-            puts "Or type 'exit' to finish your search."
-            
+
         while input != "exit"
-            input = gets.strip.downcase
+        instructions
+        input = gets.strip.downcase
 
             if input == "name"
                 search_by_creator_name
@@ -42,10 +33,25 @@ class Cli
                 list_of_departments
             elsif input == "exit"
                 puts "Thank you, have a great day!"
+                break
             end
         
         end
         
+    end
+
+    def instructions
+        puts "-----------------------------------------------"
+        puts "Hello, and welcome to Cleveland Museum of Arts!"
+        puts "-----------------------------------------------"
+        puts "Please select from the following search options:"
+        puts "To search for a work of art by creator name, enter 'name'"
+        puts "To search for a work of art by artwork title, enter 'title'"
+        puts "To search for a work of art by art medium, enter 'type'"
+        puts "For list of art mediums enter 'm'"
+        puts "To search for artwork by Departments, enter 'department'"
+        puts "For a list of art Departments enter 'd'"
+        puts "Or type 'exit' to finish your search."
     end
 
     def search_by_creator_name
@@ -53,15 +59,14 @@ class Cli
         input = gets.strip
         c = Artwork.find_by_creator(input)
         if c != nil
-            puts "Artwork title: #{c.title}."
-            puts "If you would like more information about a specific piece of artwork enter 'artwork', if you would like more information on the creator enter 'bio', or to return to the main menu enter 'menu'."
+            puts "If you would like more information about a specific piece of artwork enter 'artwork', if you would like more information on the creator enter 'bio', or to return to the main menu enter 'exit'."
             input2 = gets.strip.downcase
             if input2 == "bio"
                 puts "Creator bio: #{c.creator_bio}"
+                
             elsif input2 == "artwork"
                 search_by_title
-            elsif input2 == "menu"
-                run
+            elsif input2 == "exit"
             end
         else
             error
@@ -73,20 +78,8 @@ class Cli
         puts "Please enter the title of the artwork:"
         input = gets.strip
         art = Artwork.find_by_title(input)
-        if art != nil
-           # art.each do |test|
-           # puts "Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
-            puts "If you would like to search for another artwork by title enter 'yes', or enter 'menu' to return to the main menu."
-                input2 = gets.strip.downcase
-                if input2 == 'menu'
-                    run
-                elsif input2 == 'yes'
-                search_by_title
-              #  end
-                elsif art == nil
-                    puts "I'm sorry, we do not have more detailed information about this artwork at this time."
-                    search_by_title
-            end
+        if art != nil 
+           extra_search
         else
             error
             search_by_title
@@ -106,7 +99,7 @@ class Cli
         end
     end
 
-    def search_by_department
+    def search_by_department    ##works for now until something else breaks it.
         puts "Please enter the department name:"
         input = gets.strip
         dept = Artwork.find_by_department(input)
@@ -119,23 +112,21 @@ class Cli
     end
 
     def list_of_departments
-        dept = Artwork.all.collect{|artwork| artwork.department}.uniq.sort.each {|d| puts "#{d}"}
+        Artwork.all.collect{|artwork| artwork.department}.uniq.sort.each {|d| puts "#{d}"}
         run
      
     end
 
     def list_of_mediums
-        medium = Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "#{m}"}
-        run
+        Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "#{m}"}
     end
     
     def extra_search
-        puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'menu'."
+        puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'exit'."
         input = gets.strip.downcase
         if input == "yes"
             search_by_title
-        elsif input == "menu"
-            run
+        elsif input == "exit"
         end
     end
 

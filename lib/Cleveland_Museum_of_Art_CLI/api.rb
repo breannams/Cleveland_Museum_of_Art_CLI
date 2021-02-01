@@ -1,7 +1,7 @@
 require "httparty"
 require_relative "./artwork"
   # data = HTTParty.get("https://openaccess-api.clevelandart.org/api/artworks/")
-  # puts data["data"].first["creators"]
+  # puts data["data"].first["description"].keys
 class Api  
 
     def get_artwork
@@ -16,13 +16,11 @@ class Api
                 type: art["type"],
                 fun_fact: art["fun_fact"],
                 tombstone_description: art["tombstone"]
+            
               }
               
              Artwork.new(artwork_hash)
             end
-            # Artwork.all.each do |x|
-            #    puts  x.creators
-            #    end
     end
 end
 
