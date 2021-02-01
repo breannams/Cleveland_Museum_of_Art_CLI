@@ -38,7 +38,7 @@ class Artwork
      end
 
       private
-      
+
       def title=(title)
         @title = title
       end

@@ -1,8 +1,9 @@
+
 class Cli
 
-
-    ##TO DO!!!: make the list of departments and mediums output only once per type.
+    ##TO DO!!: get the stupid creator method to search things >:(
     ##TO DO!!: figure out how to incorporate colorize :)
+    ##Uhm. figure out how to use find_all for the search methods!
     def run
         puts "-----------------------------------------------"
         puts "Hello, and welcome to Cleveland Museum of Arts!"
@@ -49,23 +50,14 @@ class Cli
     def search_by_creator_name
         puts "Please enter the name of the creator:"
         input = gets.strip
-        creator = Artwork.find_by_creator(input)
-        if creator != nil
-            creator.each_with_index{|c,i| puts "#{i + 1}. #{c.title}"}
-        # if Artwork.find_by_creator(input)
-        #     Artwork.all.each_with_index{|c,i| puts "#{i + 1}. #{c.creators}. #{c.title}."}
-        #     puts "Would you like more information about the creator art artwork? Enter 'creator' for creator information, 'artwork' for information about a specific artwork, or 'menu' to return to the main menu."
-        #     input2 = gets.strip.downcase
-        #     if input2 == "creator"
-        #         Artwork.all.each{|creator| puts "#{creator.creator_bio}."}
-        #     elsif input2 == "artwork"
-        #         Artwork.all.each {|art| puts "#{art.tombstone_description}, Fun Fact! #{art.fun_fact}"}
-        #     elsif input2 == "menu"
-        #         run
-        #     end
+        c = Artwork.find_by_creator(input)
+        if c != nil
+            puts "#{c.creators} - #{c.title}"
+            extra_search
         else
             puts "I'm not sure what you entered, please try again."
             search_by_creator_name
+            
         end
     end
 
@@ -74,8 +66,14 @@ class Cli
         input = gets.strip
         art = Artwork.find_by_title(input)
         if art != nil
-            puts "#{art.title}. Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
-            run
+            puts "Description: #{art.tombstone_description}, Fun fact! #{art.fun_fact}"
+            puts "Please enter the name of another artwork, or enter 'menu' to return to the main menu."
+                input2 = gets.strip.downcase
+                if input2 == 'menu'
+                    run
+                else
+                search_by_title
+                end
         else
             puts "I'm not sure what you entered, please try again."
             search_by_title
@@ -89,23 +87,20 @@ class Cli
         medium = Artwork.find_by_medium(input)
         if medium != nil
             puts "#{medium.title}"
-        puts "Would you like more information about a particular artwork? y/n"
-            input2 = gets.strip.downcase
-            if input2 == "y"
-                search_by_title
-            end
+            extra_search
         else   
             puts "I'm not sure what you entered, please try again."
                 search_by_medium
-            
         end
     end
 
     def search_by_department
-        puts "Please enter the department department name:"
+        puts "Please enter the department name:"
         input = gets.strip
-        if Artwork.find_by_department(input)
-            Artwork.all.each_with_index {|d, i| puts "#{i + 1}. #{d.department}, #{d.title}."}
+        dept = Artwork.find_by_department(input)
+        if dept != nil
+            puts "Artwork title: #{dept.title}."
+            extra_search
         else
         puts "I'm not sure what you entered, please try again."
         search_by_department
@@ -122,4 +117,27 @@ class Cli
         medium = Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "#{m}"}
         run
     end
+    
+    def extra_search
+        puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'menu'."
+        input = gets.strip.downcase
+        if input == "yes"
+            search_by_title
+        elsif input == "menu"
+            run
+        end
+    end
 end
+
+
+   # if Artwork.find_by_creator(input)
+        #     Artwork.all.each_with_index{|c,i| puts "#{i + 1}. #{c.creators}. #{c.title}."}
+        #     puts "Would you like more information about the creator art artwork? Enter 'creator' for creator information, 'artwork' for information about a specific artwork, or 'menu' to return to the main menu."
+        #     input2 = gets.strip.downcase
+        #     if input2 == "creator"
+        #         Artwork.all.each{|creator| puts "#{creator.creator_bio}."}
+        #     elsif input2 == "artwork"
+        #         Artwork.all.each {|art| puts "#{art.tombstone_description}, Fun Fact! #{art.fun_fact}"}
+        #     elsif input2 == "menu"
+        #         run
+        #     end
