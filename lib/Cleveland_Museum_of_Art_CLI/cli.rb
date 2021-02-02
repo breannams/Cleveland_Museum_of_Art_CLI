@@ -3,8 +3,11 @@ class Cli
 
  
     ##To do... figure out how to return only ONE creator_bio if the first search returns multiple artowrks from the same guy (ex. GUSTAVEEE!!!!)
+    ##if creator does not have a bio needs to not return for a bio otherwise it will just output : "-Creator bio:" with nothing. & add a "Sorry we do not have a bio for this creator right now."thing
     ##To do. FIgure out why title is all of a suddent not outputting "Sorry we blah" when the artwork title doesn't have a tombstone or funfact
     ##Searches wont raise errors when typing random jargon like "dkfjdljfd" into search field :(
+        ##artwork not outputting description when searched by full name? but if searched by first work will return desc?? Ex. The Grand Canyon gives nothing. but Grand gives the description wtf.
+
     def run
        
         cleveland_museum_of_art_CLI = Api.new()
@@ -58,14 +61,13 @@ class Cli
         puts "-------------------------------------"
         puts "Please enter the name of the creator:"
         puts "-------------------------------------"
-        input = gets.strip
+        input = gets.strip.capitalize
         c = Artwork.find_by_creator(input)
         if c != nil
             puts "If you would like more information about a specific piece of artwork enter 'artwork', if you would like more information on the creator enter 'bio', or to return to the main menu enter 'menu'."
             input2 = gets.strip.downcase
             if input2 == "bio"
-                c.each{|c2| puts "- Creator bio: #{c2.creator_bio}"}
-               # puts "Creator bio: #{c.creator_bio}"
+                c.each{|c2| puts "- Creator name: #{c2.creators}. Creator bio: #{c2.creator_bio}"}
                 search_by_creator_name
             elsif input2 == "artwork"
                 search_by_title
@@ -75,9 +77,9 @@ class Cli
                 error
                 search_by_creator_name
             end 
-        else
-            error
-            search_by_creator_name
+        # else
+        #     error
+        #     search_by_creator_name
         end
     end
 
@@ -85,7 +87,7 @@ class Cli
         puts "--------------------------------------"
         puts "Please enter the title of the artwork:"
         puts "--------------------------------------"
-        input = gets.strip
+        input = gets.strip.capitalize
         art = Artwork.find_by_title(input)
         if art != nil 
            extra_search
@@ -100,7 +102,7 @@ class Cli
     puts "--------------------------------"
     puts "Please enter the type of medium:"
     puts "--------------------------------"
-     input = gets.strip
+     input = gets.strip.capitalize
         medium = Artwork.find_by_medium(input)
         if medium != nil
             extra_search
@@ -114,7 +116,7 @@ class Cli
         puts "---------------------------------"
         puts "Please enter the department name:"
         puts "---------------------------------"
-        input = gets.strip
+        input = gets.strip.capitalize
         dept = Artwork.find_by_department(input)
         if dept != nil
             extra_search
@@ -125,13 +127,11 @@ class Cli
     end
 
     def list_of_departments ##works!!
-        Artwork.all.collect{|artwork| artwork.department}.uniq.sort.each {|d| puts "#{d}"}
-        run
-     
+        Artwork.all.collect{|artwork| artwork.department}.uniq.sort.each {|d| puts "- #{d}"}
     end
 
     def list_of_mediums ##Works!
-        Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "#{m}"}
+        Artwork.all.collect{|artwork| artwork.type}.uniq.sort.each {|m| puts "- #{m}"}
     end
     
     def extra_search
@@ -140,7 +140,7 @@ class Cli
         if input == "yes"
             search_by_title
         elsif input == "menu"
-            run
+            
         end
     end
 
