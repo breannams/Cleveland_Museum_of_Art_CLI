@@ -1,8 +1,7 @@
- require "pry"
 class Artwork
     
     attr_accessor :creator_bio, :fun_fact
-    attr_reader :title, :creators, :department, :type, :description, :tombstone_description
+    attr_reader :title, :creators, :department, :type, :tombstone_description
 
     @@all = []
     
@@ -10,11 +9,7 @@ class Artwork
          hash.each do |k, v|
           self.send("#{k}=", v)
         end
-        self.save
-     end
- 
-     def save
-       @@all << self
+        @@all << self
      end
  
      def self.all
@@ -22,7 +17,7 @@ class Artwork
      end
 
      def self.find_by_title(input)
-       @@all.find_all{|t| t.title.include?(input)}.each do|t2|
+       @@all.find_all{|t| t.title.include?(input)|| t.title == input}.each do|t2|
           if t2.tombstone_description && t2.fun_fact != nil
           puts "- Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
           puts " -------------"

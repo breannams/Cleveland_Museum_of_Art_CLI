@@ -1,12 +1,7 @@
-require "httparty"
-require_relative "./artwork"
-  # data = HTTParty.get("https://openaccess-api.clevelandart.org/api/artworks/")
-  # puts data["data"].first["description"].keys
 class Api  
 
     def get_artwork
-          url = "https://openaccess-api.clevelandart.org/api/artworks/"
-          tombstone = HTTParty.get(url)
+          tombstone = HTTParty.get("https://openaccess-api.clevelandart.org/api/artworks/")
             tombstone["data"].each do |art|
               artwork_hash = {
                 title: art["title"],
