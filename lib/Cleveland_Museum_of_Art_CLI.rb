@@ -1,5 +1,4 @@
 require 'pry'
-require 'awesome_print' 
 require 'colorize'
 require 'httparty'
 

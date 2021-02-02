@@ -22,3 +22,5 @@ end
 
  api = Api.new
  api.get_artwork
+
+ 

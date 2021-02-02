@@ -17,7 +17,7 @@ class Artwork
      end
 
      def self.find_by_title(input)
-       @@all.find_all{|t| t.title.include?(input)|| t.title == input}.each do|t2|
+       @@all.find_all{|t| t.title.include?(input) || t.title == input}.each do|t2|
           if t2.tombstone_description && t2.fun_fact != nil
           puts "- Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
           puts " -------------"
