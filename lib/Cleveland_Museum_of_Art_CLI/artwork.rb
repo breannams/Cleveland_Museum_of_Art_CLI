@@ -17,32 +17,32 @@ class Artwork
      end
 
      def self.find_by_title(input)
-       @@all.find_all{|t| t.title.include?(input) || t.title == input}.each do|t2|
+       @@all.find_all{|t| t.title.downcase.include?(input.downcase)}.each do|t2|
           if t2.tombstone_description && t2.fun_fact != nil
-          puts "- Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
-          puts " -------------"
+          puts "- Title: #{t2.title}. Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
+          puts "--------"
           else t2.tombstone_description || t2.funfact == nil
-          puts "I'm sorry, we do not have more detailed information about this piece of artwork at this time."
+          puts "I'm sorry, we do not have more detailed information about #{t2.title} at this time.".colorize(:red)
           end
        end
      end
   
      def self.find_by_medium(input)
-      @@all.find_all{|m| m.type.include?(input)}.each do|m2| 
+      @@all.find_all{|m| m.type.downcase.include?(input.downcase)}.each do|m2| 
         puts "- Artwork title: #{m2.title}"
         puts "----------------"
       end
      end
 
      def self.find_by_creator(input)
-      @@all.select{|c| c.creators.include?(input)}.each do |c2| 
+      @@all.select{|c| c.creators.downcase.include?(input.downcase)}.each do |c2| 
         puts "- Creator: #{c2.creators}. Artwork title: #{c2.title}."
         puts "----------"
       end
      end
 
      def self.find_by_department(input)
-      @@all.find_all{|d| d.department.include?(input)}.each do|d2| 
+      @@all.find_all{|d| d.department.downcase.include?(input.downcase)}.each do|d2| 
         puts "- Department: #{d2.department}. Artwork title: #{d2.title}."
         puts "-------------"
       end
