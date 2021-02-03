@@ -86,16 +86,15 @@ class Cli
                         
                     else
                         art.each do |x2|
-                        puts "- I'm sorry, we currently do not have any creator information for #{x2.title}.".colorize(:red) 
+                        puts "- I'm sorry, we currently do not have a creator biography for #{x2.title}.".colorize(:red) 
                         end 
-                        search_by_title
-                    
+                      
                     end
                 end
 
             elsif input2 == "artwork"
                 search_by_title
-            
+
             end
         else 
             error
