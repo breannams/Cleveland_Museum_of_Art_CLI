@@ -1,6 +1,6 @@
 # Cleveland Museum Of Art
 
-This ruby Gem provides a CLI to search for information about artworks from the Cleveland Museum of Art located in Cleveland, Ohio.
+This ruby Gem provides a CLI to search for information about artworks from the Cleveland Museum of Art located in Cleveland, Ohio. A user can search by an artwork title, creator name, medium, or by department.
 
 ## Installation
 
