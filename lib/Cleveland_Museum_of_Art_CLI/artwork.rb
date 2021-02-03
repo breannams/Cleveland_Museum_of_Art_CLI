@@ -18,18 +18,18 @@ class Artwork
 
      def self.find_by_title(input)
        @@all.find_all{|t| t.title.downcase.include?(input.downcase)}.each do|t2|
-          if t2.tombstone_description && t2.fun_fact != nil
-          puts "- Title: #{t2.title}. Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
-          puts "--------"
-          else t2.tombstone_description || t2.funfact == nil
-          puts "I'm sorry, we do not have more detailed information about #{t2.title} at this time.".colorize(:red)
+          if t2.tombstone_description != nil && t2.fun_fact != nil &&  !t2.tombstone_description.empty? && !t2.fun_fact.empty?
+            puts "- Title: #{t2.title}. Description: #{t2.tombstone_description}. Fun fact! #{t2.fun_fact}"
+            puts "--------"
+          else 
+            puts "I'm sorry, we do not have more detailed information about #{t2.title} at this time.".colorize(:red)
           end
        end
      end
   
      def self.find_by_medium(input)
       @@all.find_all{|m| m.type.downcase.include?(input.downcase)}.each do|m2| 
-        puts "- Artwork title: #{m2.title}"
+        puts "- Artwork title: #{m2.title}."
         puts "----------------"
       end
      end
@@ -54,9 +54,8 @@ class Artwork
         @title = title
       end
 
-
       def creators= (creators)
-          @creators = creators
+        @creators = creators
       end
 
       def department= (department)
@@ -70,5 +69,4 @@ class Artwork
       def tombstone_description= (tombstone_description)
         @tombstone_description = tombstone_description
       end
-
  end

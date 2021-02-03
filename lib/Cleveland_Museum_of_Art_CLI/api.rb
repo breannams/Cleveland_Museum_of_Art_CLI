@@ -5,7 +5,7 @@ class Api
             tombstone["data"].each do |art|
               artwork_hash = {
                 title: art["title"],
-                creators: art["creators"].first ? art["creators"].first["description"] : "" ,
+                creators: art["creators"].first ? art["creators"].first["description"] : "",
                 creator_bio:  art["creators"].first ? art["creators"].first["biography"] : "", 
                 department: art["department"],
                 type: art["type"],
