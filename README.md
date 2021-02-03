@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-In your terminal type the bellow code and then follow the on screen prompts.
+In your terminal type the following code and then follow the on screen prompts:
    ruby bin/Cleveland_Museum_of_Art_CLI
 
 ## Development
