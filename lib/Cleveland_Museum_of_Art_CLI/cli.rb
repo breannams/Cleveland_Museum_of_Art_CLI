@@ -1,5 +1,3 @@
-##TO DO: Why tf does exit need multiple exits D:<<<<<<<<<<
-
 class Cli
     
     def run
@@ -57,18 +55,16 @@ class Cli
         puts "-------------------------------------"
         puts "Please enter the name of the creator:".colorize(:green)
         puts "-------------------------------------"
+
         input = gets.strip
         c = Artwork.find_by_creator(input)
        
         if c.any?
-            
             puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'menu'.".colorize(:green)
-            
             extra_search
         else
             error
             search_by_creator_name
-       
         end
     end
 
@@ -76,6 +72,7 @@ class Cli
         puts "--------------------------------------"
         puts "Please enter the title of the artwork:".colorize(:blue)
         puts "--------------------------------------"
+
         input = gets.strip
         art = Artwork.find_by_title(input)
       
@@ -108,12 +105,13 @@ class Cli
 
  
     def search_by_medium 
-    puts "--------------------------------"
-    puts "Please enter the type of medium:".colorize(:light_cyan)
-    puts "--------------------------------"
-    input = gets.strip
-    medium = Artwork.find_by_medium(input)
-      
+        puts "--------------------------------"
+        puts "Please enter the type of medium:".colorize(:light_cyan)
+        puts "--------------------------------"
+
+        input = gets.strip
+        medium = Artwork.find_by_medium(input)
+        
         if medium.any?
             puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'menu'.".colorize(:light_cyan)
             extra_search
@@ -127,6 +125,7 @@ class Cli
         puts "---------------------------------"
         puts "Please enter the department name:".colorize(:light_blue)
         puts "---------------------------------"
+
         input = gets.strip
         dept = Artwork.find_by_department(input)
         
@@ -134,8 +133,8 @@ class Cli
             puts "If you would like more information about a piece of artwork enter 'yes', or to return to the main menu enter 'menu'.".colorize(:light_blue)
             extra_search
         else
-        error
-        search_by_department
+            error
+            search_by_department
         end
     end
 
