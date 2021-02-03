@@ -1,8 +1,6 @@
-# ClevelandMuseumOfArtCLI
+# Cleveland Museum Of Art
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Cleveland_Museum_of_Art_CLI`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This ruby Gem provides a CLI to search for information about artworks from the Cleveland Museum of Art located in Cleveland, Ohio. A user can search by an artwork title, creator name, medium, or by department.
 
 ## Installation
 
@@ -22,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your terminal type the bellow code and then follow the on screen prompts.
+   ruby bin/Cleveland_Museum_of_Art_CLI
 
 ## Development
 

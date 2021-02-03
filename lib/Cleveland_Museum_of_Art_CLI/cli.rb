@@ -79,14 +79,14 @@ class Cli
             input2 = gets.strip.downcase
             if input2 == 'bio'
                 art.each do |x|
+                   
                     if x.creators != nil && x.creator_bio != nil && !x.creator_bio.empty? 
                         puts Rainbow("- Artwork title: #{x.title}. Creator: #{x.creators} Biography: #{x.creator_bio}.").teal
                         
                     else
-                        art.each do |x2|
-                        puts Rainbow("- I'm sorry, we currently do not have a creator biography for #{x2.title}.").palevioletred.underline
-                        end 
-                      
+
+                        puts Rainbow("- I'm sorry, we currently do not have a creator biography for #{x.title}.").palevioletred.underline
+                            
                     end
                 end
 
