@@ -1,6 +1,6 @@
 require 'pry'
-require 'colorize'
 require 'httparty'
+require 'rainbow'
 
 require "Cleveland_Museum_of_Art_CLI/version"
 
