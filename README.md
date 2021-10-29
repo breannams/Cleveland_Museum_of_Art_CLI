@@ -14,10 +14,6 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install Cleveland_Museum_of_Art_CLI
-
 ## Usage
 
 In your terminal type the following code and then follow the on screen prompts:
