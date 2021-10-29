@@ -17,7 +17,7 @@ And then execute:
 ## Usage
 
 In your terminal type the following code and then follow the on screen prompts:
-   ruby bin/Cleveland_Museum_of_Art_CLI
+   ```ruby bin/Cleveland_Museum_of_Art_CLI```
 
 ## Development
 
