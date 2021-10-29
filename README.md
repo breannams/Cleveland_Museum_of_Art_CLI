@@ -4,11 +4,7 @@ This ruby Gem provides a CLI to search for information about artworks from the C
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'Cleveland_Museum_of_Art_CLI'
-```
+Copy and clone this repo
 
 And then execute:
 
@@ -16,7 +12,7 @@ And then execute:
 
 ## Usage
 
-In your terminal type the following code and then follow the on screen prompts:
+In your terminal type the following code and then follow the prompts in your terminal:
    ```ruby bin/Cleveland_Museum_of_Art_CLI```
 
 ## Development
